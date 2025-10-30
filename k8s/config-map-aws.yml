@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-index
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html><head><title>Welcome to AWS</title></head><body><h1>Welcome to AWS</h1></body></html>
