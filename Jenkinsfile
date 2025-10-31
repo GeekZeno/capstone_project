@@ -32,7 +32,7 @@ pipeline {
                         echo "🚀 Deploying Nginx on Kubernetes..."
 
                         # Apply ConfigMap
-                        kubectl apply -f configure-map-aws.yml
+                        kubectl apply -f config-map-aws.yml
 
                         # Apply Deployment
                         kubectl apply -f nginx-deployment.yml
