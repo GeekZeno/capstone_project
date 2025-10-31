@@ -2,28 +2,17 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION = 'us-east-1'
+        // Define your environment variables if needed
+        APP_DIR = '/var/www/html'
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                // Checkout your GitHub repo with credentials
+                echo "📦 Checking out repository..."
                 git branch: 'main',
                     credentialsId: 'github_token',
                     url: 'https://github.com/GeekZeno/capstone_project.git'
-            }
-        }
-
-        stage('Terraform Init & Apply') {
-            steps {
-                dir('terraform') {
-                    sh '''
-                        echo "🚀 Initializing Terraform..."
-                        terraform init -input=false
-                        terraform apply -auto-approve
-                    '''
-                }
             }
         }
 
@@ -42,12 +31,21 @@ pipeline {
             steps {
                 dir('k8s') {
                     sh '''
-                        echo "📦 Deploying on Kubernetes..."
+                        echo "🚀 Deploying on Kubernetes..."
                         kubectl apply -f namespace.yaml
                         kubectl apply -f deployment.yaml
                         kubectl apply -f service.yaml
                     '''
                 }
+            }
+        }
+
+        stage('Restart Nginx') {
+            steps {
+                sh '''
+                    echo "🔁 Restarting Nginx on target servers..."
+                    ansible all -i ansible/inventory -m service -a "name=nginx state=restarted"
+                '''
             }
         }
     }
