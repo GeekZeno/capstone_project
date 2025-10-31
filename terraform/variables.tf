@@ -14,5 +14,6 @@ variable "project_name" {
 variable "public_ssh_key_path" {
   description = "Path to public ssh key file (id_rsa.pub) used for EC2 key pair"
   type        = string
-  default     = "/home/ubuntu/.ssh/terraform_key.pub"
+  default     = "/var/lib/jenkins/.ssh/terraform_key.pub"
 }
+
