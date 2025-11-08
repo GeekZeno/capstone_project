@@ -44,15 +44,15 @@ pipeline {
         //     }
         // }
 
-    //     stage('Restart Nginx') {
-    //         steps {
-    //             sh '''
-    //                 echo "🔁 Restarting Nginx pods..."
-    //                 kubectl rollout restart deployment nginx-deployment || true
-    //             '''
-    //         }
-    //     }
-    // }
+        // stage('Restart Nginx') {
+        //     steps {
+        //         sh '''
+        //             echo "🔁 Restarting Nginx pods..."
+        //             kubectl rollout restart deployment nginx-deployment || true
+        //         '''
+        //     }
+        // }
+    }
 
     post {
         success {
