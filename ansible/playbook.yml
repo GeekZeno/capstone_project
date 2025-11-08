@@ -25,7 +25,7 @@
 
     - name: Copy AWS index page
       copy:
-        src: ../k8s/index-aws.html
+        src: ../k8s/index-azure.html
         dest: /var/www/html/index.html
         owner: www-data
         group: www-data
@@ -50,4 +50,5 @@
 #         name: jenkins
 #         state: started
 #         enabled: yes
+
 
